@@ -1,19 +1,7 @@
 // App.js
 import React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
-import PokemonList from './components/PokemonList';
+import AppNavigator from './navigation';
 
 export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <PokemonList />
-    </SafeAreaView>
-  );
+  return <AppNavigator />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
