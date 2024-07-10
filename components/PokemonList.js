@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import GradientBackground from './GradientBackground';
 
 const PokemonList = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -35,18 +36,20 @@ const PokemonList = () => {
   }
 
   return (
-    <FlatList
-      data={pokemon}
-      keyExtractor={(item) => item.name}
-      renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('PokemonDetails', { pokemon: item })}>
-          <View style={styles.item}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Image source={{ uri: item.imageUrl }} style={styles.image} />
-          </View>
-        </TouchableOpacity>
-      )}
-    />
+    <GradientBackground>
+      <FlatList
+        data={pokemon}
+        keyExtractor={(item) => item.name}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('PokemonDetails', { pokemon: item })}>
+            <View style={styles.item}>
+              <Text style={styles.name}>{item.name}</Text>
+              <Image source={{ uri: item.imageUrl }} style={styles.image} />
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </GradientBackground>
   );
 };
 

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
 import axios from 'axios';
+import GradientBackground from './GradientBackground';
 
 const PokemonDetails = ({ route }) => {
   const { pokemon } = route.params;
@@ -51,27 +52,29 @@ const PokemonDetails = ({ route }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.name}>{details.name}</Text>
-      <Image source={{ uri: details.sprites.front_default }} style={styles.image} />
-      <Text style={styles.info}>Base Experience: {details.base_experience}</Text>
-      <Text style={styles.info}>Height: {details.height}</Text>
-      <Text style={styles.info}>Weight: {details.weight}</Text>
-      <Text style={styles.info}>Types: {details.types.map(type => type.type.name).join(', ')}</Text>
+    <GradientBackground>
+      <View style={styles.container}>
+        <Text style={styles.name}>{details.name}</Text>
+        <Image source={{ uri: details.sprites.front_default }} style={styles.image} />
+        <Text style={styles.info}>Base Experience: {details.base_experience}</Text>
+        <Text style={styles.info}>Height: {details.height}</Text>
+        <Text style={styles.info}>Weight: {details.weight}</Text>
+        <Text style={styles.info}>Types: {details.types.map(type => type.type.name).join(', ')}</Text>
 
-      <Text style={styles.evolutionTitle}>Evolutions:</Text>
-      <FlatList
-        data={evolutions}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (
-          <View style={styles.evolutionItem}>
-            <Image source={{ uri: item.imageUrl }} style={styles.evolutionImage} />
-            <Text style={styles.evolutionName}>{item.name}</Text>
-          </View>
-        )}
-        horizontal={true}
-      />
-    </View>
+        <Text style={styles.evolutionTitle}>Evolutions:</Text>
+        <FlatList
+          data={evolutions}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <View style={styles.evolutionItem}>
+              <Image source={{ uri: item.imageUrl }} style={styles.evolutionImage} />
+              <Text style={styles.evolutionName}>{item.name}</Text>
+            </View>
+          )}
+          horizontal={true}
+        />
+      </View>
+    </GradientBackground>
   );
 };
 
