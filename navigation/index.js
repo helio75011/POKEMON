@@ -4,19 +4,21 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import PokemonList from '../components/PokemonList';
 import PokemonDetails from '../components/PokemonDetails';
-import GradientBackground from '../components/GradientBackground';
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <GradientBackground>
-        <Stack.Navigator initialRouteName="PokemonList">
-          <Stack.Screen name="PokemonList" component={PokemonList} options={{ title: 'Pokémon List' }} />
-          <Stack.Screen name="PokemonDetails" component={PokemonDetails} options={{ title: 'Pokémon Details' }} />
-        </Stack.Navigator>
-      </GradientBackground>
+      <Stack.Navigator
+        initialRouteName="PokemonList"
+        screenOptions={{
+          headerShown: false, // Hide header to show gradient background
+        }}
+      >
+        <Stack.Screen name="PokemonList" component={PokemonList} />
+        <Stack.Screen name="PokemonDetails" component={PokemonDetails} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

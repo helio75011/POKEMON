@@ -1,7 +1,7 @@
 // src/components/GradientBackground.js
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, View } from 'react-native';
 
 const GradientBackground = ({ children }) => {
   return (
@@ -9,13 +9,18 @@ const GradientBackground = ({ children }) => {
       colors={['#f6d365', '#fda085']}
       style={styles.background}
     >
-      {children}
+      <View style={styles.overlay}>
+        {children}
+      </View>
     </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   background: {
+    flex: 1,
+  },
+  overlay: {
     flex: 1,
   },
 });
